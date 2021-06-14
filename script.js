@@ -1,40 +1,119 @@
+let JsChart = document.getElementById("district_chart");
+let district_bar_chart = new Chart(JsChart, {
+  type: 'bar',
+  data: {
+    labels: [],
+    datasets:[
+      {
+        data: [],
+        label: 'Total Population Per District',
+        backgroundColor: "#B1D2C2",
+        
+      },
+    ]
+  },
+  option:{
+    scales: {
+      x: {
+        stacked: true
+      },
+      y: {
+        beginAtZero: true
+      }
+  }
+  }
+ 
+});
+
+let household = document.getElementById("household_population_total");
+let households_Chart = new Chart(household, {
+  type: 'bar',
+  data: {
+    labels: [],
+    datasets:[
+      { 
+        label: 'Total Population Per County',
+        backgroundColor: "#B1D2C2",
+        data: [],
+      },
+    ]
+  },
+  option:{
+    scales: {
+      x: {
+        stacked: true
+      },
+      y: {
+        // stacked: true,
+        beginAtZero: true
+      }
+  }
+  }
+});
+let storing_of_population_data = [];
+let population_per_households_data = [];
+
 
 fetch('census.json')
   .then(response => response.json())
   .then(data => {
+    let households_data = data.households;
+    population_per_households_data.push(households_data);
+
+    let object_of_population_data = data.population;
+    storing_of_population_data.push(object_of_population_data)
+
     let population_data = data.population;
+    let households_data_per_county = data.households;
 
-    let total_male_population = population_data.reduce(function (acc, cur) {
-      return acc + cur.male;     
-    }, 0)
-    let total_male_population_amount = document.getElementById("amount_of_male_population"); 
-    total_male_population_amount.innerHTML = total_male_population;
+    let total_male_population_value = [];
+    function getTotalMalePopulation(){
+      let total_male_population = population_data.reduce((acc, cur) => {
+        return acc + cur.male;     
+      }, 0)
+      let total_male_population_amount = document.getElementById("amount_of_male_population"); 
+      total_male_population_amount.innerHTML = total_male_population;
+      
+      total_male_population_value.push(total_male_population);
+    }
+    getTotalMalePopulation();
 
-    let total_female_population = population_data.reduce(function (acc, cur) {
-      return acc + cur.female;
-    }, 0)
-    let total_female_population_amount = document.getElementById("amount_of_female_population"); 
-    total_female_population_amount.innerHTML = total_female_population;
-
-    let total_population = population_data.reduce(function (acc, cur) {
-      return acc + cur.male + cur.female;
-    }, 0);
+    let total_female_population_value = [];
+    function getTotalFemalePopulation(){
+      let total_female_population = population_data.reduce(function (acc, cur) {
+        return acc + cur.female;
+      }, 0)
+      let total_female_population_amount = document.getElementById("amount_of_female_population"); 
+      total_female_population_amount.innerHTML = total_female_population;
+      total_female_population_value.push(total_female_population);
+    }
+    getTotalFemalePopulation();
     
-    let total_population_amount = document.getElementById("amount_of_population"); 
-    total_population_amount.innerHTML = total_population;
+
+    function getTotalPopulation(){
+      let total_population = population_data.reduce(function (acc, cur) {
+        return acc + cur.male + cur.female;
+      }, 0);
+      
+      let total_population_amount = document.getElementById("amount_of_population"); 
+      total_population_amount.innerHTML = total_population;
+    }
+    getTotalPopulation();
 
     let population_per_county = {}
-
-    population_data.forEach(ele => {
-    if(population_per_county.hasOwnProperty(ele.county)){
-      population_per_county[ele.county] += ele.male + ele.female;
-    }else {
-      population_per_county[ele.county] = ele.male + ele.female;
+    function getCountyPopulationValue(){
+      population_data.forEach(ele => {
+        if(population_per_county.hasOwnProperty(ele.county)){
+          population_per_county[ele.county] += ele.male + ele.female;
+        }else {
+          population_per_county[ele.county] = ele.male + ele.female;
+        }
+        })
     }
-    })
-
-
-    let myChart = document.getElementById("myChart").getContext('2d');
+    getCountyPopulationValue()
+    
+    function populatiuonPerCountyChart(){
+    let myChart = document.getElementById("myChart");
     let bar_chart = new Chart(myChart, {
       type: 'bar',
       data: {
@@ -43,7 +122,9 @@ fetch('census.json')
             label: 'Total Population Per County',
             backgroundColor: "#B1D2C2",
             data: population_per_county,
+            borderRadius: 10
           },
+          
         ]
       },
       option:{
@@ -58,112 +139,151 @@ fetch('census.json')
       }
       }
     });
+    }
+    populatiuonPerCountyChart();
 
-    let donut_pie_Chart = document.getElementById("donut_pie_Chart").getContext('2d');
-    let donut_chart = new Chart(donut_pie_Chart, {
-      type: 'doughnut',
-      data: {
-        datasets:[
-          { 
-            data:[
-            total_female_population,
-            total_male_population 
-            ],
-            backgroundColor: [
-              '#FFFFFF',
-              '#519872',  
-            ],
-          },
-        ],
-        labels: ["female", "male",]
-      },
-      option:{}
-  })
+    function doughnutChart(){
+      let donut_pie_Chart = document.getElementById("donut_pie_Chart");
+      let donut_chart = new Chart(donut_pie_Chart, {
+        type: 'doughnut',
+        data: {
+          labels: ["female", "male",],
+          datasets:[
+            { 
+              data:[
+              total_female_population_value,
+              total_male_population_value
+              ],
+              
+              backgroundColor: [
+                '#FFFFFF',
+                '#519872',  
+              ],
+            },
+          ],
+        
+        },
+        option:{
+          legend: {
+            position: "bottom"
+        },
+          scales: {
+            x: {
+              stacked: true
+            },
+            y: {
+              stacked: true,
+              beginAtZero: true
+            }
+        },
+        },
+        
+      })
+    }
+    doughnutChart();
+    
 
-  
-    //  let population_per_district = population_data.reduce((acc, cur) =>  {
-    //       if (!acc[cur.district]) acc[cur.district] = 0;
-    //       acc[cur.district] += cur.male + cur.female;
-    //       return acc
-    //   }, {})
-    // console.log(population_per_district)
+    function removeDuplicateObjectFromArray(population_data, key) {
+      var check = new Set();
+      return population_data.filter(obj => !check.has(obj[key]) && check.add(obj[key]));
+    }
+    
+    let selected_county = removeDuplicateObjectFromArray(population_data, 'county');
+    selected_county.forEach((ele, index) => {
+      let displaying_county_names = `<option value ='${ele.county}'>${ele.county}</optipn> `
+      document.querySelector('select').insertAdjacentHTML('beforeend', displaying_county_names);
+    })
+    getCountyPerDistrict();
     let population_per_district = {}
 
     population_data.forEach(ele => {
       if(!ele.county[ele.district])
       {
-        console.log(population_per_district[ele.district] += ele.male + ele.female)
+        population_per_district[ele.district] += ele.male + ele.female
         
       }else {
         population_per_county[ele.county] = ele.male + ele.female;
       }
+     })  
+     
+     function removeDuplicateCounty(households_data_per_county, key) {
+      var check = new Set();
+      return households_data_per_county.filter(obj => !check.has(obj[key]) && check.add(obj[key]));
+    }
+
+    let select_county_per_household = removeDuplicateCounty(households_data_per_county, 'county');
+      select_county_per_household.forEach((ele, index) => {
+      let displaying_county_names_per_households = `<option value ='${ele.county}'>${ele.county}</optipn> `
+      document.getElementById('choosing_county_household_div').insertAdjacentHTML('beforeend', displaying_county_names_per_households);
     })
+    getCountyPerhousehold();
+  })
 
-    let JsChart = document.getElementById("district_chart").getContext('2d');
-    let bar_chart3 = new Chart(JsChart, {
-      type: 'bar',
-      data: {
-        datasets:[
-          { 
-            label: 'Total Population Per County',
-            backgroundColor: "#B1D2C2",
-            data: population_per_district,
-          },
-        ]
-      },
-      option:{
-        scales: {
-          x: {
-            stacked: true
-          },
-          y: {
-            // stacked: true,
-            beginAtZero: true
-          }
-      }
-      }
-    });
+.catch(err => {
+  console.log(err);
+});
 
 
-    // let population_per_district = {}
+function getCountyPerDistrict(){ 
+  let countyValue = document.getElementById('choosing_county_div');
+  let county_value = countyValue.value;
+  let district_population_per_county_male = [];
+  let district_population_per_county_female = [];
+  let district_name = [];
 
-    // population_data.forEach(ele => {
-    //   if(!ele.county[ele.district])
-    //   {
-    //     console.log(population_per_district[ele.district] += ele.male + ele.female)
+  storing_of_population_data.forEach(element => {
+      element.forEach(ele => {
         
-    //   }else {
-    //     population_per_county[ele.county] = ele.male + ele.female;
-    //   }
-    // })
-
-    let household = document.getElementById("household_population_total").getContext('2d');
-    let bar_chart4 = new Chart(household, {
-      type: 'bar',
-      data: {
-        datasets:[
-          { 
-            label: 'Total Population Per County',
-            backgroundColor: "#B1D2C2",
-            data: population_per_county,
-          },
-        ]
-      },
-      option:{
-        scales: {
-          x: {
-            stacked: true
-          },
-          y: {
-            // stacked: true,
-            beginAtZero: true
-          }
+      if(ele.county === county_value) {
+        district_name.push(ele.district)
+        district_population_per_county_male.push(ele.male);
+        district_population_per_county_female.push(ele.female)
+        
       }
-      }
-    });
 
     })
+  })
+  console.log(displayingCountyDistrictData(district_population_per_county_male, district_population_per_county_female, district_name));
+}
+function displayingCountyDistrictData(district_population_per_county_male,district_population_per_county_female, district_name){
+  district_bar_chart.data.labels = district_name;
+  
+  district_bar_chart.data.datasets.pop();
+  district_bar_chart.data.datasets.push({
+    data: district_population_per_county_male,district_population_per_county_female,
+    label: 'Total Population Per District',
+    backgroundColor: "#B1D2C2",
+    borderRadius: 50
+  }),
+  district_bar_chart.update();
+}
 
-  .catch(err => {
-    console.log(err);
-  });
+function getCountyPerhousehold(){
+  let households_population_per_county = [];
+  let county_name = [];
+
+  let household_value = document.getElementById('choosing_county_household_div').value;
+  population_per_households_data.forEach(element => {
+    element.forEach(ele => {
+      if(ele.county === household_value) {
+        
+        county_name.push(ele.county)
+        households_population_per_county.push(ele.male + ele.female);
+      } 
+    })
+
+  })
+  displayingHouseholds(households_population_per_county, county_name)
+}
+
+function displayingHouseholds(households_population_per_county, county_name){
+  households_Chart.data.labels = county_name;
+
+  households_Chart.data.datasets.pop();
+  households_Chart.data.datasets.push({
+    data: households_population_per_county,
+    label: 'Total Population Per households',
+    backgroundColor: "#B1D2C2",
+  }),
+  households_Chart.update();
+}

@@ -228,9 +228,10 @@
 }
 
 #grid2_container {
-    height: 50vh;
+    height: 40vh;
     background-color: #519872;
     border-radius: 8px 8px 8px 8px;
+    padding: 40px 40px 40px 40px ;
 }
 
 #container_div_for_district {
@@ -310,7 +311,6 @@
 
 #container_for_data_downloading {
     display: flex;
-
 }
 
 #icon_div2 {
@@ -387,4 +387,18 @@
     margin-top: 12%;
     font-family: monospace;
     margin-left: 10%;
+}
+
+#flex_container_text {
+    display: flex;
+}
+
+#female_F {
+    margin-left: 50%;
+    margin-top: 10%; 
+}
+#male_M {
+    margin-left: 30%;
+    margin-top: 10%; 
+    
 }
