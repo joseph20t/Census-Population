@@ -1,3 +1,7 @@
+body {
+    font-family: source code pro;
+}
+
 #container {
     width: 80%;
     height: 300vh;
@@ -390,15 +394,30 @@
 }
 
 #flex_container_text {
-    display: flex;
+    display: grid;
+    grid-template-columns: 30% 35% 35%;
+}
+
+#display_county_name {
+    height: 50vh;
+    /* background-color: green; */
+    margin-top: 12%;  
+    padding: 10px;
 }
 
 #female_F {
-    margin-left: 50%;
-    margin-top: 10%; 
+    height: 50vh;
+    /* background-color: grey; */
+    text-align: right;
+    padding: 10px;
+    margin-top: 10%;  
+
 }
 #male_M {
-    margin-left: 30%;
-    margin-top: 10%; 
+    height: 50vh;
+    /* background-color: blue; */
+    text-align: right;
+    padding: 10px;
+    margin-top: 10%;  
     
 }
