@@ -1,5 +1,6 @@
 body {
-    font-family: source code pro;
+    font: Source Code Pro;
+    font-family: 'Material Icons';
 }
 
 #container {
@@ -393,31 +394,14 @@ body {
     margin-left: 10%;
 }
 
-#flex_container_text {
-    display: grid;
-    grid-template-columns: 30% 35% 35%;
-}
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20%;
+  }
 
-#display_county_name {
-    height: 50vh;
-    /* background-color: green; */
-    margin-top: 12%;  
-    padding: 10px;
-}
-
-#female_F {
-    height: 50vh;
-    /* background-color: grey; */
-    text-align: right;
-    padding: 10px;
-    margin-top: 10%;  
-
-}
-#male_M {
-    height: 50vh;
-    /* background-color: blue; */
-    text-align: right;
-    padding: 10px;
-    margin-top: 10%;  
-    
+  #customers td, #customers th {
+  padding: 10px;
+  margin-top: 20%;
 }

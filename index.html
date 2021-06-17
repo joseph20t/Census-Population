@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="census.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.0/chart.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
 
     <title>Census Population</title>
 
@@ -19,8 +19,6 @@
                 <div id="census_2008_div">
                     <h2 id="herder_census">
                         census2008
-                        <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap" rel="stylesheet">
                     </h2>
                 </div>
             
@@ -29,16 +27,12 @@
                         <div id="home_div">
                             <h2 id="herder_home">
                                 HOME
-                                <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap" rel="stylesheet">
                             </h2>
                         </div>
         
                         <div id="download_div">
                             <h2 id="herder_download">
                                 DOWNLOAD
-                                <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap" rel="stylesheet">
                             </h2>
                         </div>
                     </div>
@@ -53,14 +47,10 @@
         <button id="total_population_div">
             <div id="population_container_div">
                 <div id="icon1_div">
-                    <i class ="Material-icons" ></i>
+                  <img style="margin-top: 20%;" src="./outline_transgender_white_24dp.png" alt="transgender">
                 </div>
                 <div id="text_div">
-                    <h3 id="name_of_population">
-                        TOTAL POPULATION
-                        <link rel="preconnect" href="https://fonts.gstatic.com">
-                        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-                    </h3>
+                    <h3 id="name_of_population"> TOTAL POPULATION</h3>
                     <h2 id="amount_of_population"></h2>
                 </div>
                 
@@ -72,14 +62,10 @@
         <button id="female_population_div">
             <div id="container_div_female">
                 <div id="icon2_div">
-                    <!-- <img src="https://fonts.google.com/icons?selected=Material%20Icons%20Outlined%3Afemale" alt=""> -->
+                    <img style="margin-top: 15%;" src="./outline_female_white_24dp.png" alt="female">
                 </div>
                 <div id="text2_div">
-                    <h3 id="name_of_female_population">
-                        FEMALE
-                        <link rel="preconnect" href="https://fonts.gstatic.com">
-                        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-                    </h3>
+                    <h3 id="name_of_female_population">FEMALE</h3>
                     <h2 id="amount_of_female_population"></h2>
                 </div>
                 
@@ -90,14 +76,10 @@
         <button id="male_population_div">
             <div id="container_div_male">
                 <div id="icon3_div">
-                    <!-- <img src="https://fonts.google.com/icons?selected=Material%20Icons%20Outlined%3Amale" alt="male"> -->
+                    <img style="margin-top: 15%;" src="./outline_male_white_24dp.png" alt="">
                 </div>
                 <div id="text3_div">
-                    <h3 id="name_of_male_population">
-                        MALE
-                        <link rel="preconnect" href="https://fonts.gstatic.com">
-                        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-                    </h3>
+                    <h3 id="name_of_male_population">MALE</h3>
                     <h2 id="amount_of_male_population"></h2>
                 </div>
                 
@@ -107,7 +89,7 @@
 
     <div id="container_for_two_div">
         <div id="grid1_container">
-            <canvas id="myChart" width="1600" height="1000"></canvas>
+            <canvas id="myChart" width="1600" height="950"></canvas>
         </div>
         <div id="grid2_container">
             <canvas id="donut_pie_Chart" width="10%" height="10%"></canvas>
@@ -117,16 +99,12 @@
     <div id="container_div_for_district">
         <div id="distribution_of_population_by_district_container">
             <div id="text_distribution_div">
-                <h2 id="txt_district_population">
-                    Distribution of Population by District
-                    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap" rel="stylesheet">
-                </h2>
+                <h2 id="txt_district_population">Distribution of Population by District</h2>
             </div>
 
                 <select name="" onchange="getCountyPerDistrict()" id="choosing_county_div">
                 </select>
-            <canvas id="district_chart" width="1200" height="600"></canvas>
+            <canvas id="district_chart" width="1200" height="550"></canvas>
             
         </div>
     </div>
@@ -154,29 +132,46 @@
                 <!-- <button id="choosing_county_household_div">Montserrado</button> -->
                 <select name="" onchange="getCountyPerhousehold()" id="choosing_county_household_div">
                 </select>
-                <canvas id="household_population_total" width="1600" height="1000"></canvas>
+                <canvas id="household_population_total" width="1600" height="950"></canvas>
             </div>
         </div>
         <div id="counties_with_most_fe_ma_div">
-            <h2 id="txt_num_householod_population2">
-                Counties with most<br>males & females
-                <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap" rel="stylesheet">
-            </h2>
+            <h2 id="txt_num_householod_population2">Counties with most<br>males & females</h2>
             <div id="flex_container_text">
-                <div id="display_county_name">
-                    <h2>County</h2>
-                    <h2 id="hey"></h2>
-                </div>
-                <div id="female_F">
-                    <h2>F</h2>
-                </div>
-                <div id="male_M">
-                    <h2>M</h2>
-                </div>
-            </div>
-            
-            <div id="displaying_counties_with_most_fm_ml">
+                <table id="customers">
+                    <tr>
+                        <th>County</th>
+                        <th>F</th>
+                        <th>M</th>
+                    </tr>
+                    <tr>
+                        <td id="first_county_name"></td>
+                        <td  style="color: #519872;" id="first_county_female"></td>
+                        <td  style="color: #519872;" id="first_county_male"></td>
+                    </tr>
+                    <tr>
+                        <td id="name_of_couty"></td>
+                        <td  style="color: #519872;" id="female_digit"></td>
+                        <td  style="color: #519872;" id="male_digit"></td>
+                    </tr>
+                    <tr>
+                        <td id="name_of_couty3"></td>
+                        <td  style="color: #519872;" id="female_digit3"></td>
+                        <td  style="color: #519872;" id="male_digit3"></td>
+                    </tr>
+
+                     <tr>
+                        <td id="name_of_couty4"></td>
+                        <td  style="color: #519872;" id="female_digit4"></td>
+                        <td  style="color: #519872;" id="male_digit4"></td>
+                    </tr>
+
+                    <tr>
+                        <td id="name_of_couty5"></td>
+                        <td  style="color: #519872;" id="female_digit5"></td>
+                        <td  style="color: #519872;" id="male_digit5"></td>
+                    </tr>
+                  </table>
             </div>
         </div>
     </div>

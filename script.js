@@ -75,17 +75,24 @@ fetch('census.json')
 
     let population_data = data.population;
     let households_data_per_county = data.households;
-    josephTest(population_data)
+    counties_with_most_male_female(population_data)
 
     let total_male_population_value = [];
     function getTotalMalePopulation(){
       let total_male_population = population_data.reduce((acc, cur) => {
         return acc + cur.male;     
       }, 0)
+
+      const curreencyData = { style: 'currency', currency: 'USD' };
+      const numberFormat = new Intl.NumberFormat(curreencyData);
+
+      let population_digit = numberFormat.format(total_male_population);
       let total_male_population_amount = document.getElementById("amount_of_male_population"); 
-      total_male_population_amount.innerHTML = total_male_population;
+      total_male_population_amount.innerHTML = population_digit;
+      
       
       total_male_population_value.push(total_male_population);
+      
     }
     getTotalMalePopulation();
 
@@ -94,8 +101,12 @@ fetch('census.json')
       let total_female_population = population_data.reduce(function (acc, cur) {
         return acc + cur.female;
       }, 0)
+      const curreencyData_female = { style: 'currency', currency: 'USD' };
+      const numberFormat_female = new Intl.NumberFormat(curreencyData_female);
+
+      let population_digit_female = numberFormat_female.format(total_female_population);
       let total_female_population_amount = document.getElementById("amount_of_female_population"); 
-      total_female_population_amount.innerHTML = total_female_population;
+      total_female_population_amount.innerHTML = population_digit_female;
       total_female_population_value.push(total_female_population);
     }
     getTotalFemalePopulation();
@@ -105,9 +116,12 @@ fetch('census.json')
       let total_population = population_data.reduce(function (acc, cur) {
         return acc + cur.male + cur.female;
       }, 0);
-      
+      const curreencyData_total_population = { style: 'currency', currency: 'USD' };
+      const numberFormat_total_population = new Intl.NumberFormat(curreencyData_total_population);
+
+      let total_population_digit = numberFormat_total_population.format(total_population);
       let total_population_amount = document.getElementById("amount_of_population"); 
-      total_population_amount.innerHTML = total_population;
+      total_population_amount.innerHTML = total_population_digit;
     }
     getTotalPopulation();
 
@@ -329,28 +343,60 @@ function displayingHouseholds(households_male_population, households_female_popu
   households_Chart.update();
 }
 
-function josephTest(population_data){
-  // let a = [];
-  // let c = [];
+function counties_with_most_male_female(population_data){
+  let county_name = [];
+  let a = [];
+  let c = [];
+  let t = [];
   population_data.forEach(ele => {
-    // console.log(c)
-    // console.log(c.includes(ele.county))
-    // if(c.includes(ele.county)){
-    //   console.log(ele.county)
-    // }
-    // if(ele.county === "Montserrado "){
-    //   a.push(ele.male)
-     
-    //   let b = a.reduce((acc, cur) => {
-    //     return acc + cur;     
-    //   }, 0)
-      // console.log(c[0])
-      // let t = document.getElementById("hey")
-      // c[0].innerHTML = t
-    // }
-    
-    // console.log(a)
-    // let nest = ele.male
-    // a.push([ele.county] = ele.male)
+    if(!c.includes(ele.county)){
+      console.log(ele.county, ele.male, ele.female)
+      c.push(ele.county, ele.male);
+      a.push(ele.female);
+      t.push(ele.male);
+      county_name.push(ele.county);
+    }
   })
+  a.sort()
+  c.sort()
+  t.sort()
+  let first_county_name= document.getElementById('first_county_name')
+  let first_county_female = document.getElementById('first_county_female');
+  let first_county_male = document.getElementById('first_county_male')
+
+  first_county_name.innerHTML = county_name[4];
+  first_county_male.innerHTML = a[0];
+  first_county_female.innerHTML = t[0];
+
+  let name_of_county = document.getElementById('name_of_couty')
+  let female_digit = document.getElementById('female_digit');
+  let male_digit = document.getElementById('male_digit')
+
+  name_of_county.innerHTML = county_name[10];
+  male_digit.innerHTML = a[2];
+  female_digit.innerHTML = t[1];
+
+  let name_of_county3 = document.getElementById('name_of_couty3')
+  let female_digit3 = document.getElementById('female_digit3');
+  let male_digit3 = document.getElementById('male_digit3')
+
+  name_of_county3.innerHTML = county_name[3];
+  male_digit3.innerHTML = a[3];
+  female_digit3.innerHTML = t[2];
+
+  let name_of_county4 = document.getElementById('name_of_couty4')
+  let female_digit4 = document.getElementById('female_digit4');
+  let male_digit4 = document.getElementById('male_digit4')
+
+  name_of_county4.innerHTML = county_name[8];
+  male_digit4.innerHTML = a[5];
+  female_digit4.innerHTML = t[5];
+
+  let name_of_county5 = document.getElementById('name_of_couty5')
+  let female_digit5 = document.getElementById('female_digit5');
+  let male_digit5 = document.getElementById('male_digit5')
+
+  name_of_county5.innerHTML = county_name[7];
+  male_digit5.innerHTML = a[6];
+  female_digit5.innerHTML = t[6];
 }
