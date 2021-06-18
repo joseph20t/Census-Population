@@ -192,9 +192,11 @@ fetch('census.json')
         
         },
         option:{
-          legend: {
-            position: "bottom"
-        },
+          plugins: {
+            labels: {
+              position: 'down',
+            }
+          },
           scales: {
             x: {
               stacked: true
