@@ -1,198 +1,181 @@
 body {
     font: Source Code Pro;
     font-family: 'Material Icons';
-}
-
-#container {
-    width: 80%;
-    height: 300vh;
     background-color: #F0F2EF;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 #nav_container {
-    max-width: 100%;
+    width: 100vw;
     height: 18vh;
-    background-color: #F0F2EF;;
+    background-color: #F0F2EF;
 }
 
 #flooting_two_navs {
     display: grid;
-    grid-template-columns: 30% 30%;
-    column-gap: 35%;
+    grid-template-columns: 30vw 30vw;
+    column-gap: 35vw;
 }
 
 #census_2008_div {
     height: 15vh;
     background-color: #F0F2EF;
-    margin-top: 4%;
+    margin-top: 4vh;
 }
 #herder_census {
     text-align: center;
-    font-size: 40px;
+    font-size: 2.5vw;
     color: #519872;
-    padding-top: 5%;
+    padding-top: 3vh;
 }
 
 #home_download_div {
-    height: 15vh;
+    height: 14vh;
     background-color: #F0F2EF;
-    margin-top: 5%;
+    margin-top: 5vh;
 }
 
 #container_div_home_download_div {
     display: grid;
-    grid-template-columns: 30% 30%;
-    column-gap: 2%;
-    margin-top: 10%;
+    height: 14vh;
+    grid-template-columns: 12vw 15vw;
+    column-gap: 2vw;
 }
 
 #home_div {
-    height: 8vh;
     background-color: #F0F2EF;
-    margin-left: 120px;
-    padding-top: 15%;
+    padding-top: 3vh;
 }
 
 #herder_home {
-    font-size: 18px;
     text-align: center;
+    font-size: 1.2vw;
     color: #519872;
     font-weight: bold;
+    padding-top: 3vh;
 }
 
 #download_div {
-    height: 8vh;
     background-color: #F0F2EF;
-    margin-left: 100px;
     padding-top: 15%;
 }
 
 #herder_download {
-    font-size: 18px;
-    text-align: center;
+    font-size: 1.2vw;
     color: #519872;
     font-weight: bold;
+    padding-top: 2vh;
 }
 
 #container_for_calculating_male_female {
     display: grid;
-    grid-template-columns: 30% 30% 30%;
-    column-gap: 2%;
-    margin-left: 50px;
-    margin-top: 1%;
+    grid-template-columns: 25vw 25vw 25vw;
+    height: 17vh;
+    column-gap: 2vw;
+    margin-left: 9vw;
+    margin-top: 2vh;
 }
 
 #total_population_div {
-    height: 17vh;
-    box-shadow:  12px 12px 50px #F0F2EF;;
+    box-shadow:  12vw 12vw 50vw #F0F2EF;
     background-color: #FFFFFF;
-    border-radius: 7px 7px 7px 7px; 
+    border-radius: 0.5vw 0.5vw 0.5vw 0.5vw; 
     border-color: #FFFFFF;
     
 } 
 
 #population_container_div {
     display: grid;
-    grid-template-columns: 28% 65%;
-    column-gap: 5%;
+    grid-template-columns: 5vw 15vw;
+    height: 14vh;
+    column-gap: 1vw;
 }
 
 #icon1_div {
     height: 9vh;
     background-color: #519872;
-    margin-top: 30%;
-    border-radius: 8px 8px 8px 8px;
-    margin-left: 20px;
+    margin-top: 3vh;
+    border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
+    margin-left: 1vw;
 }
 
-#text_div {
-    height: 9vh;
+.text_div {
+    height: 10vh;
     background-color: #FFFFFF;
-    margin-top: 13%;
+    margin-top: 3vh;
 }
-
-#name_of_population {
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    margin-top: -1px;
-
+.text_call_total_population {
+    width: 16vw;
+    height: 5vh;
+    background-color: #FFFFFF;
+    font-size: 1.2vw;
+    color: #828282;
+    font-family: 'Courier New', Courier;
+    margin-left: -1vw;
 }
-
 #amount_of_population {
-    font-size: 30px;
-    font-family: monospace;
+    font-size: 1.6vw;
     font-weight: bold;
-    margin-top: -2px;
-    margin-left: -30px;
+    margin-top: 0.5vh;
+    margin-left: -5vw;
 }
 
 #female_population_div {
-    height: 17vh;
-    box-shadow:  12px 12px 50px #F0F2EF;;
+    box-shadow:  12vw 12vw 50vw #F0F2EF;;
     background-color: #FFFFFF;
-    border-radius: 7px 7px 7px 7px; 
+    border-radius: 0.5vw 0.5vw 0.5vw 0.5vw; 
     border-color: #FFFFFF;
 }
 
 #container_div_female {
     display: grid;
-    grid-template-columns: 28% 60%;
-    column-gap: 5%;
+    grid-template-columns: 5vw 5vw;
+    height: 14vh;
+    column-gap: 1vw;
 }
 
 #icon2_div {
     height: 9vh;
     background-color: #519872;
-    margin-top: 30%;
-    border-radius: 8px 8px 8px 8px;
-    margin-left: 20px;
+    margin-top: 3vh;
+    border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
+    margin-left: 1vw;
 }
-
-#text2_div {
-    height: 9vh;
+.text2_div {
+    height: 5vh;
     background-color: #FFFFFF;
-    margin-top: 15%;
+    margin-top: 3vh;
+    font-size: 1.2vw;
+    color: #828282;
+    font-family: 'Courier New', Courier;
 }
-
-#name_of_female_population {
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    margin-top: -1px;
-    margin-left: -100px;
-    
-}
-
 #amount_of_female_population {
-    font-size: 30px;
-    font-family: monospace;
+    font-size: 1.6vw;
     font-weight: bold;
-    margin-top: -2px;
-    margin-left: -50px;
+    margin-top: 0.5vh;
+    margin-top: 2vw;
+    color: black;
 }
 
 #male_population_div {
-    height: 17vh;
-    box-shadow:  12px 12px 50px #F0F2EF;;
+    box-shadow:  12vw 12vw 50vw #F0F2EF;;
     background-color: #FFFFFF;
-    border-radius: 7px 7px 7px 7px; 
+    border-radius: 0.5vw 0.5vw 0.5vw 0.5vw; 
     border-color: #FFFFFF;
 }
 
 #container_div_male {
     display: grid;
-    grid-template-columns: 28% 60%;
-    column-gap: 5%;
+    grid-template-columns: 5vw 5vw;
+    height: 14vh;
+    column-gap: 1vw;
 }
+
 #icon3_div {
     height: 9vh;
     background-color: #519872;
-    margin-top: 30%;
-    border-radius: 8px 8px 8px 8px;
-    margin-left: 20px;
+    margin-top: 3vh;
+    border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
+    margin-left: 1vw;
 }
 
 #text3_div {
@@ -201,25 +184,17 @@ body {
     margin-top: 15%;
 }
 
-#name_of_male_population {
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    margin-top: -1px;
-    margin-left: -120px;
-}
-
 #amount_of_male_population {
-    font-size: 30px;
-    font-family: monospace;
+    font-size: 1.6vw;
     font-weight: bold;
-    margin-top: -2px;
-    margin-left: -50px;
+    margin-top: 0.5vh;
+    margin-top: 2vw;
+    color: black;
 }
 
 #container_for_two_div {
     display: grid;
-    grid-template-columns: 58% 34%;
+    grid-template-columns: 56vw 30vw;
     column-gap: 2%;
     margin-top: 3%;
 }
@@ -227,82 +202,83 @@ body {
 #grid1_container {
     height: 50vh;
     background-color: #FFFFFF;
-    margin-left: 50px;
-    border-radius: 8px 8px 8px 8px;
-    box-shadow:  12px 12px 50px #F0F2EF;
+    margin-left: 8.8vw;
+    border-radius:0.5vw 0.5vw 0.5vw 0.5vw;
 }
 
 #grid2_container {
-    height: 40vh;
+    height: 50vh;
     background-color: #519872;
-    border-radius: 8px 8px 8px 8px;
-    padding: 40px 40px 40px 40px ;
+    border-radius:0.5vw 0.5vw 0.5vw 0.5vw;
 }
 
 #container_div_for_district {
-    width: 90%;
+    width: 79vw;
     height: 80vh;
     background-color: #FFFFFF;
-    margin-left: 50px;
-    margin-top: 3%;
-    border-radius: 8px 8px 8px 8px;
-    box-shadow:  15px 15px 50px #F0F2EF;
+    margin-left: 9vw;
+    margin-top: 3vh;
+    border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
+    box-shadow:  15vw 15vw 50vw #F0F2EF;
 }
 
 #distribution_of_population_by_district_container {
     display: grid;
-    grid-template-columns: 66% 28%;
-    column-gap: 2%;
-    margin-top: 1%;
+    grid-template-columns: 60vw 15vw;
+    column-gap: 2vw;
+    margin-top: 1vh;
 }
 
 #text_distribution_div {
     height: 10vh;
-    margin-top: 5%;
+    margin-top: 5vh;
 
 }
 
 #txt_district_population {
-    text-align: center;
-    font-size: 25px;
+    margin-left: 5vw;
+    font-size: 1.5vw;
     font-family: monospace;
 }
 
 #choosing_county_div {
     height: 6vh;
     background-color: #FFFFFF;
-    margin-top: 15%;
-    font-size: 30px;
+    margin-top: 5vh;
+    font-size: 1.8vw;
     background-color: #F0F2EF;
-    border-color: 50px#519872;
-    padding-top: 5px;
+    border-color: 5vw#519872;
+    padding-top: 1vh;
 }
 
 #container_for_downloading_census_data {
-    width: 90%;
-    height: 17vh;
-    margin-top: 3%;
+    width: 79vw;
+    height: 17vh; 
     background-color: #519872;
-    margin-left: 50px;
-    border-radius: 8px 8px 8px 8px;
+    margin-left: 9vw;
+    margin-top: 3vh;
+    border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
+    box-shadow:  15vw 15vw 50vw #F0F2EF;
 }
 
 #grid_of_two_div {
     display: grid;
-    grid-template-columns: 55% 30%;
-    column-gap: 10%;
+    grid-template-columns: 54vw 20vw;
+    column-gap: 2vw;
+    margin-top: 1vh;
+    height: 18vh;
     
 }
 
 #download_data_text_div {
     height: 10vh;
     background-color: #519872;
-    margin-top: 5%;
+    margin-top: 5vh;
 }
 
 #txt_census_data {
-    font-size: 30px;
-    text-align: center;
+    font-size: 2vw;
+    margin-left: 5vw;
     font-family: monospace;
     color: #FFFFFF;
 }
@@ -310,8 +286,8 @@ body {
 #download {
     height: 10vh;
     background-color: #FFFFFF;
-    border-radius: 8px 8px 8px 8px;
-    margin-top: 10%;
+    border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
+    margin-top: 5vh;
 }
 
 #container_for_data_downloading {
@@ -319,79 +295,79 @@ body {
 }
 
 #icon_div2 {
-    width: 12%;
+    width: 2.5vw;
     height: 4vh;
     background-color: #519872;
-    border-radius: 8px 8px 8px 8px;
-    margin-left: 12%;
-    margin-top: 10%;
+    border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
+    margin-left: 3vw;
+    margin-top: 4vh;
 }
 
 #txt_header {
-    font-size: 30px;
+    font-size: 2.2vw;
     background-color: #FFFFFF;
     color: #519872;
-    margin-left: 5%;
-    margin-top: 8%;
-    font-family: cursive;
+    margin-left: 1vw;
+    margin-top: 3.5vh;
+    font-family: monospace;
 }
 
 #container_num_household_population {
     display: grid;
-    grid-template-columns: 63% 30%;
-    column-gap: 1%;
-    margin-top: 3%;
+    grid-template-columns: 60vw 26vw;
+    column-gap: 2vw;
+    margin-top: 3vh;
+    height: 70vh;
 }
 
 #grid_household {
     height: 70vh;
     background-color: #FFFFFF;
-    margin-left: 50px;
-    border-radius: 8px 8px 8px 8px;
-    box-shadow:  12px 12px 50px #F0F2EF;
+    margin-left: 9vw;
+    border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
+    box-shadow:  12vw 12vw 50vw #F0F2EF;
 }
 
 #distribution_of_population_by_households_container {
     display: grid;
-    grid-template-columns: 55% 35%;
-    column-gap: 2%;
-    margin-top: 1%;
-}
+    grid-template-columns: 32vw 15vw;
+    column-gap: 2vw;
+    margin-top: 0.5vh
+}   
 
 #text_household_div {
     height: 10vh;
-    margin-top: 5%;
+    margin-top: 4vh;
 }
 
 #txt_num_householod_population {
-    font-size: 20px;
+    font-size: 1.5vw;
     font-family: monospace;
-    margin-left: 8%;
+    margin-left: 2.5vw;
 }
 
 #choosing_county_household_div {
     height: 6vh;
     background-color: #FFFFFF;
-    margin-top: 17%;
-    font-size: 25px;
+    margin-top: 5vh;
+    font-size: 1.8vw;
     background-color: #F0F2EF;
-    border-color: 50px#519872;
-    padding-top: 5px;
-    margin-left: 3%;
+    border-color: 5vw#519872;
+    padding-top: 1vh;
 }
 
 #counties_with_most_fe_ma_div {
     height: 70vh;
     background-color: #FFFFFF;
-    border-radius: 8px 8px 8px 8px;
-    box-shadow:  12px 12px 50px #F0F2EF;
+    border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
+    box-shadow:  12vw 12vw 50vw #F0F2EF;
 }
 
 #txt_num_householod_population2 {
-    font-size: 20px;
-    margin-top: 12%;
+    font-size: 1.5vw;
+    margin-top: 3vw;
     font-family: monospace;
-    margin-left: 10%;
+    margin-left: 4vw;
 }
 
 #customers {
@@ -404,6 +380,8 @@ body {
   #customers td, #customers th {
   padding: 10px;
   margin-top: 20%;
+  font-size: 1.3vw;
+  font-weight: bold;
 }
 
 #choosing_county_div {

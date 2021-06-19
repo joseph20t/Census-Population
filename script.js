@@ -19,10 +19,12 @@ let district_bar_chart = new Chart(JsChart, {
   option:{
     scales: {
       x: {
-        stacked: true
+        // stacked: true,
+        responseive: true
       },
       y: {
-        beginAtZero: true
+        beginAtZero: true,
+        responseive: true
       }
   }
   }
@@ -39,22 +41,27 @@ let households_Chart = new Chart(household, {
         label: 'Total Population Per County',
         backgroundColor: "#B1D2C2",
         data: [],
+      borderWidth: 50,
       },
       { 
         label: 'Total Population Per County',
         backgroundColor: "#B1D2C2",
         data: [],
+      borderWidth: 50,
       },
-    ]
+    ],
   },
   option:{
+    responseive: true,
     scales: {
       x: {
-        stacked: true
+        // stacked: true,
+        responseive: true
       },
       y: {
-        // stacked: true,
-        beginAtZero: true
+        stacked: true,
+        beginAtZero: true,
+        responseive: true
       }
   }
   }
@@ -74,8 +81,9 @@ fetch('census.json')
     storing_of_population_data.push(object_of_population_data)
 
     let population_data = data.population;
+    counties_with_most_male_female(population_data);
     let households_data_per_county = data.households;
-    counties_with_most_male_female(population_data)
+
 
     let total_male_population_value = [];
     function getTotalMalePopulation(){
@@ -120,7 +128,8 @@ fetch('census.json')
       const numberFormat_total_population = new Intl.NumberFormat(curreencyData_total_population);
 
       let total_population_digit = numberFormat_total_population.format(total_population);
-      let total_population_amount = document.getElementById("amount_of_population"); 
+      let total_population_amount = document.getElementById("amount_of_population");
+      console.log(total_population_amount) 
       total_population_amount.innerHTML = total_population_digit;
     }
     getTotalPopulation();
@@ -155,13 +164,16 @@ fetch('census.json')
         ]
       },
       option:{
+        responseive: true,
         scales: {
           x: {
-            stacked: true
+            stacked: true,
+            responsive: true
           },
           y: {
             stacked: true,
-            beginAtZero: true
+            beginAtZero: true,
+            responseive: true
           }
       }
       }
@@ -169,7 +181,7 @@ fetch('census.json')
     }
     populatiuonPerCountyChart();
 
-    //displaying the male and female data in the doughnut chart
+  //   //displaying the male and female data in the doughnut chart
     function doughnutChart(){
       let donut_pie_Chart = document.getElementById("donut_pie_Chart");
       let donut_chart = new Chart(donut_pie_Chart, {
@@ -192,6 +204,7 @@ fetch('census.json')
         
         },
         option:{
+          responseive: true,
           plugins: {
             labels: {
               position: 'down',
@@ -199,11 +212,13 @@ fetch('census.json')
           },
           scales: {
             x: {
-              stacked: true
+              stacked: true,
+              responseive: true
             },
             y: {
               stacked: true,
-              beginAtZero: true
+              beginAtZero: true,
+              responseive: true
             }
         },
         },
@@ -220,12 +235,12 @@ fetch('census.json')
     
     let selected_county = removeDuplicateObjectFromArray(population_data, 'county');
     selected_county.forEach((ele, index) => {
-      let displaying_county_names = `<option value ='${ele.county}'>${ele.county}</optipn> `
+      let displaying_county_names = `<option value ='${ele.county}'>${ele.county}</optipn>`
       document.querySelector('select').insertAdjacentHTML('beforeend', displaying_county_names);
     })
     getCountyPerDistrict();
 
-    //district population data
+    // district population data
     let population_per_district = {}
 
     population_data.forEach(ele => {
@@ -238,7 +253,7 @@ fetch('census.json')
       }
      })  
      
-     //households data removing the duplicate county
+  //    //households data removing the duplicate county
      function removeDuplicateCounty(households_data_per_county, key) {
       var check = new Set();
       return households_data_per_county.filter(obj => !check.has(obj[key]) && check.add(obj[key]));
@@ -256,7 +271,6 @@ fetch('census.json')
 .catch(err => {
   console.log(err);
 });
-
 
 function getCountyPerDistrict(){ 
   let countyValue = document.getElementById('choosing_county_div');
@@ -338,7 +352,6 @@ function displayingHouseholds(households_male_population, households_female_popu
   {
     data: households_population_number,
     label: 'Huseholds Population Number',
-    // backgroundColor: "l",
     borderRadius: 25
   }
   ),
@@ -346,59 +359,101 @@ function displayingHouseholds(households_male_population, households_female_popu
 }
 
 function counties_with_most_male_female(population_data){
-  let county_name = [];
-  let a = [];
-  let c = [];
-  let t = [];
-  population_data.forEach(ele => {
-    if(!c.includes(ele.county)){
-      console.log(ele.county, ele.male, ele.female)
-      c.push(ele.county, ele.male);
-      a.push(ele.female);
-      t.push(ele.male);
-      county_name.push(ele.county);
-    }
+  let county_name_male = {};
+  let county_name_female = {};
+  let county_name = {}
+
+  population_data.forEach((ele, index) => {
+    if(county_name_male.hasOwnProperty(ele.county)){
+    county_name_male[ele.county] += ele.male
+    county_name_female[ele.county] += ele.female
+    county_name[ele.county]
+  }else {
+    county_name_male[ele.county] = ele.male
+    county_name_female[ele.county] = ele.female
+    county_name[ele.county] = ele.county
+  }
   })
-  a.sort()
-  c.sort()
-  t.sort()
-  let first_county_name= document.getElementById('first_county_name')
+  console.log(county_name_male)
+  let counties = Object.keys(county_name)
+  console.log(counties[11])
+  let county_male_value = Object.values(county_name_male);
+  
+  let top_five_values_male = county_male_value.sort((a,b) => b-a).slice(0,5);
+  console.log(top_five_values_male)
+  let county_values_female = Object.values(county_name_female);
+  
+  let top_five_values_female = county_values_female.sort((a,b) => b-a).slice(0,5);
+  console.log('it is me ooo2',top_five_values_female)
+  
+  const curreencyData_female = { style: 'currency', currency: 'USD' };
+  const numberFormat_female = new Intl.NumberFormat(curreencyData_female);
+
+  let female_digit = numberFormat_female.format(top_five_values_female[0]);
+  let male_digit = numberFormat_female.format(top_five_values_male[0]);
+
+  let first_county_name = document.getElementById('first_county_name')
   let first_county_female = document.getElementById('first_county_female');
   let first_county_male = document.getElementById('first_county_male')
 
-  first_county_name.innerHTML = county_name[4];
-  first_county_male.innerHTML = a[0];
-  first_county_female.innerHTML = t[0];
+
+  first_county_name.innerHTML = counties[10];
+  first_county_male.innerHTML = male_digit;
+  first_county_female.innerHTML = female_digit;
+
+  const curreencyData1 = { style: 'currency', currency: 'USD' };
+  const numberFormat1 = new Intl.NumberFormat(curreencyData1);
+
+  let female_digit_nimba = numberFormat1.format(top_five_values_female[1]);
+  let male_digit_nimba = numberFormat1.format(top_five_values_male[1]);
 
   let name_of_county = document.getElementById('name_of_couty')
-  let female_digit = document.getElementById('female_digit');
-  let male_digit = document.getElementById('male_digit')
+  let female_digits = document.getElementById('female_digit');
+  let male_digits = document.getElementById('male_digit')
 
-  name_of_county.innerHTML = county_name[10];
-  male_digit.innerHTML = a[2];
-  female_digit.innerHTML = t[1];
+  name_of_county.innerHTML = counties[11];
+  male_digits.innerHTML = male_digit_nimba;
+  female_digits.innerHTML = female_digit_nimba;
+
+  const curreencyData2 = { style: 'currency', currency: 'USD' };
+  const numberFormat2 = new Intl.NumberFormat(curreencyData2);
+
+  let female_digit_bong = numberFormat2.format(top_five_values_female[2]);
+  let male_digit_bong = numberFormat2.format(top_five_values_male[2]);
 
   let name_of_county3 = document.getElementById('name_of_couty3')
   let female_digit3 = document.getElementById('female_digit3');
   let male_digit3 = document.getElementById('male_digit3')
 
-  name_of_county3.innerHTML = county_name[3];
-  male_digit3.innerHTML = a[3];
-  female_digit3.innerHTML = t[2];
+  name_of_county3.innerHTML = counties[1];
+  male_digit3.innerHTML = male_digit_bong;
+  female_digit3.innerHTML = female_digit_bong;
+
+  const curreencyData3 = { style: 'currency', currency: 'USD' };
+  const numberFormat3 = new Intl.NumberFormat(curreencyData3);
+
+  let female_digit_lofa = numberFormat3.format(top_five_values_female[3]);
+  let male_digit_lofa = numberFormat3.format(top_five_values_male[3]);
 
   let name_of_county4 = document.getElementById('name_of_couty4')
   let female_digit4 = document.getElementById('female_digit4');
   let male_digit4 = document.getElementById('male_digit4')
 
-  name_of_county4.innerHTML = county_name[8];
-  male_digit4.innerHTML = a[5];
-  female_digit4.innerHTML = t[5];
+  name_of_county4.innerHTML = counties[7];
+  male_digit4.innerHTML = male_digit_lofa;
+  female_digit4.innerHTML = female_digit_lofa;
+
+  const curreencyData4 = { style: 'currency', currency: 'USD' };
+  const numberFormat4 = new Intl.NumberFormat(curreencyData4);
+
+  let female_digit_grand_bassa = numberFormat4.format(top_five_values_female[4]);
+  let male_digit_grand_bassa = numberFormat4.format(top_five_values_male[4]);
 
   let name_of_county5 = document.getElementById('name_of_couty5')
   let female_digit5 = document.getElementById('female_digit5');
   let male_digit5 = document.getElementById('male_digit5')
 
-  name_of_county5.innerHTML = county_name[7];
-  male_digit5.innerHTML = a[6];
-  female_digit5.innerHTML = t[6];
+  name_of_county5.innerHTML = counties[3];
+  male_digit5.innerHTML = male_digit_grand_bassa
+  female_digit5.innerHTML = female_digit_grand_bassa
 }
